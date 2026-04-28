@@ -440,13 +440,13 @@ const STORAGE_KEY = 'eeat-course-progress-v3';
 
 async function loadProgress() {
   try {
-    const r = await window.storage.get(STORAGE_KEY);
-    if (r && r.value) return JSON.parse(r.value);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
   } catch (e) {}
   return { completedModules: [], quizScores: {}, certificateName: '', scorecardResult: null };
 }
 async function saveProgress(p) {
-  try { await window.storage.set(STORAGE_KEY, JSON.stringify(p)); } catch (e) {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {}
 }
 
 // ==========================================================================
